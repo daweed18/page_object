@@ -8,16 +8,21 @@ class ProductPage(BasePage):
         self.should_see_add_to_card_button()
         self.should_see_title()
         self.should_see_price()
-        self.add_to_card()
 
     def should_see_title(self):
-        assert self.is_element_present(*ProductPageLocators.PRODUCT_TITLE)
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_TITLE), "Элемента заголовок нету"
 
     def should_see_price(self):
-        assert self.is_element_present(*ProductPageLocators.PRICE)
+        assert self.is_element_present(*ProductPageLocators.PRICE), "Элемента цена нету"
 
     def should_see_add_to_card_button(self):
-        assert self.is_element_present(*ProductPageLocators.ADD_TO_CARD_BUTTON)
+        assert self.is_element_present(*ProductPageLocators.ADD_TO_CARD_BUTTON), "Кнопки добавить в корзину нету"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Сообщение присутствует на сайте"
+
+    def should_be_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Сообщение не исчезло"
 
     def get_title(self):
         if self.is_element_present(*ProductPageLocators.PRODUCT_TITLE):
